@@ -12,3 +12,5 @@
   "license": "ISC",
   "type": "commonjs"
 }
+ "scripts": {
+  "test": "echo
