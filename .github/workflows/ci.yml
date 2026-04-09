@@ -1,4 +1,4 @@
-name: My First CI Pipeline
+name: My First CI Pipeline 
 
 on:
   push:
@@ -25,3 +25,5 @@ jobs:
 
       - name: Build project
         run: npm run build
+      - name: Print message
+        run: echo "Pipeline is working!"
