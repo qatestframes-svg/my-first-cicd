@@ -28,5 +28,4 @@ jobs:
 
       - name: Deploy to Vercel
         run: echo
-      - name: Deploy to Vercel
-        run: npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
+     
