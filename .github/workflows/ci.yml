@@ -1,4 +1,4 @@
-name: My First CI Pipeline 
+name: My First CI Pipeline
 
 on:
   push:
@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install Node
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -20,12 +20,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run test
+      - name: Run tests
         run: npm test
 
       - name: Build project
         run: npm run build
-
-      - name: Deploy to Vercel
-        run: echo
-     

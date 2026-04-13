@@ -1,14 +1,14 @@
 {
   "name": "my-first-cicd",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-  "test": "echo \"Test passed\"",
-  "build": "echo \"Build done\""
-},
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "echo \"Test passed\""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
 }
