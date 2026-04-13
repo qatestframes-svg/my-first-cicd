@@ -36,7 +36,7 @@ jobs:
         run: docker tag myapp:latest dockerhub_username/myapp:latest
 
       - name: Push image
-        run: docker push dockerhub_username/myapp:latest
+        run: docker push devmasoom/myapp:latest
 
   deploy:
     needs: build
