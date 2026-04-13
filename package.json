@@ -6,7 +6,6 @@
   "scripts": {
   "test": "echo \"Test passed\"",
   "build": "echo \"Build done\""
-  "build": "vite build"
 },
   "keywords": [],
   "author": "",
