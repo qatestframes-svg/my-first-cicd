@@ -26,5 +26,5 @@ jobs:
       - name: Build project
         run: npm run build
 
-     - name: Deploy to Vercel
-       run: echo
+      - name: Deploy to Vercel
+        run: echo
