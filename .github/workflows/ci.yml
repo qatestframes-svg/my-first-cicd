@@ -25,5 +25,6 @@ jobs:
 
       - name: Build project
         run: npm run build
-      - name: Print message
-        run: echo "Pipeline is working!"
+
+     - name: Deploy to Vercel
+       run: echo "Deploy step will go here"
