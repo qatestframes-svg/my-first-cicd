@@ -1,30 +1,44 @@
-name: My First CI Pipeline
- 
+name: Docker CI CD Pipeline
+
 on:
   push:
     branches: ["main"]
- 
+
 jobs:
   build:
     runs-on: ubuntu-latest
- 
+
     steps:
-      - name: Download code
+      - name: Checkout code
         uses: actions/checkout@v3
- 
-      - name: Install Node
+
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
- 
+
       - name: Install dependencies
         run: npm install
- 
-      - name: Run test
+
+      - name: Run tests
         run: npm test
- 
-      - name: Build project
-        run: npm run build
- 
-      - name: Deploy to Vercel
-        run: echo
+
+      - name: Build Docker image
+        run: docker build -t myapp:latest .
+
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.Zxcvbnm@786 }}" | docker login -u "${{ secrets.devmasoom }}" --password-stdin
+
+      - name: Tag image
+        run: docker tag myapp:latest dockerhub_username/myapp:latest
+
+      - name: Push image
+        run: docker push dockerhub_username/myapp:latest
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy on server via SSH
+        run: echo "Pulling and running Docker container on server..."
