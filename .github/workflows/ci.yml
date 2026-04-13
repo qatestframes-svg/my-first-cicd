@@ -27,7 +27,7 @@ jobs:
         run: docker build -t myapp:latest .
 
       - name: Login to Docker Hub
-        run: echo "${{ secrets.Zxcvbnm@786 }}" | docker login -u "${{ secrets.devmasoom }}" --password-stdin
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Tag image
         run: docker tag myapp:latest dockerhub_username/myapp:latest
