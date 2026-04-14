@@ -44,6 +44,5 @@ jobs:
 
     steps:
       - name: Deploy on server via SSH
-        run: echo "Pipeline status: ${{ job.status }}"
-
+        run: echo "Pulling and running Docker container on server..."
 
