@@ -38,6 +38,14 @@ jobs:
       - name: Push image
         run: docker push devmasoom/myapp:latest
 
+      - name: Show logs (always)
+        if: always()
+        run: docker logs myapp || true
+
+      - name: Show final status
+        if: always()
+        run: echo "Pipeline finished with status: ${{ job.status }}"
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -45,3 +53,4 @@ jobs:
     steps:
       - name: Deploy on server via SSH
         run: echo "Pulling and running Docker container on server..."
+
