@@ -42,9 +42,9 @@ jobs:
         if: always()
         run: docker logs myapp || true
 
-      - name: Show final status
-        if: always()
-        run: echo "Pipeline finished with status: ${{ job.status }}"
+     - name: Show final status
+       if: always()
+       run: echo "Pipeline finished with status: ${{ job.status }}"
 
   deploy:
     needs: build
