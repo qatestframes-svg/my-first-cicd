@@ -20,8 +20,23 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests
-        run: npm test
+      - name: Run tests with logging
+        run: |
+          echo "Running tests..."
+          npm test | tee test-output.log
+          if [ ${PIPESTATUS[0]} -eq 0 ]; then
+            echo "✅ Tests PASSED"
+          else
+            echo "❌ Tests FAILED"
+            exit 1
+          fi
+
+      - name: Upload test logs
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-logs
+          path: test-output.log
 
       - name: List files
         run: ls -la
