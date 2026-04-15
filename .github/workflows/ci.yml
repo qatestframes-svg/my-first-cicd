@@ -1,63 +1,47 @@
 name: Docker CI CD Pipeline
-
+ 
 on:
   push:
     branches: ["main"]
-
+ 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+ 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
+ 
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
-
+ 
       - name: Install dependencies
         run: npm install
-
-      - name: Run tests with logging
-        run: |
-          echo "Running tests..."
-          npm test | tee test-output.log
-          if [ ${PIPESTATUS[0]} -eq 0 ]; then
-            echo "✅ Tests PASSED"
-          else
-            echo "❌ Tests FAILED"
-            exit 1
-          fi
-
-      - name: Upload test logs
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-logs
-          path: test-output.log
-
+ 
+      - name: Run tests
+        run: npm test
+ 
       - name: List files
         run: ls -la
-
+ 
       - name: Build Docker image
         run: docker build -t myapp:latest .
-
+ 
       - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-
+ 
       - name: Tag image
         run: docker tag myapp:latest devmasoom/myapp:latest
-
+ 
       - name: Push image
         run: docker push devmasoom/myapp:latest
-
+ 
   deploy:
     needs: build
     runs-on: ubuntu-latest
-
+ 
     steps:
       - name: Deploy on server via SSH
         run: echo "Pulling and running Docker container on server..."
-
